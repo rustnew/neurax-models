@@ -1,0 +1,22 @@
+{
+  "findings": [
+    {
+      "kind": "learned",
+      "step": 5640,
+      "message": "The training loss fell from 0.3505 to 0.02202 (94%).",
+      "figures": {
+        "start": 0.35049220091986955,
+        "end": 0.02201782627500171,
+        "drop": 0.9371802675859384
+      }
+    },
+    {
+      "kind": "error",
+      "step": 5640,
+      "message": "On validation the prediction is off by 6 on average (root mean squared error, in the target's own units).",
+      "figures": {
+        "rmse": 5.8365988099226165
+      }
+    }
+  ]
+}
