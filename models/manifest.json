@@ -1,0 +1,109 @@
+{
+  "approved": {
+    "analysedAt": "2026-10-11T17:38:27.219Z",
+    "availableMemoryGb": 5.534049987792969,
+    "budgetUsd": 10,
+    "calibrationMachine": "Intel(R) Core(TM) i5-8365U CPU @ 1.60GHz \u00b7 fp32 \u00b7 framework timed",
+    "co2Kg": 0.00012894718100202614,
+    "contingency": 0.15,
+    "devices": 1,
+    "energyKwh": 0.0032236795250506533,
+    "hardware": "Intel(R) Core(TM) i5-8365U CPU @ 1.60GHz",
+    "parameters": 43393,
+    "peakMemoryGb": 0.0007306486368179321,
+    "stepSeconds": 0.13717785212981504,
+    "trainingCostUsd": 9.67103857515196e-05,
+    "trainingCostUsdRange": [
+      8.703934717636763e-05,
+      0.00010638142432667156
+    ],
+    "trainingHours": 0.21491196833671025,
+    "trainingHoursRange": [
+      0.1934207715030392,
+      0.2364031651703813
+    ],
+    "uncalibratedStepSeconds": 0.03147800798297175
+  },
+  "data": {
+    "file": "sample_10k_rows.csv",
+    "fingerprint": "79414208e8b4e61d",
+    "kind": "csv",
+    "path": "/home/fossouomartial/archive/sample_10k_rows.csv",
+    "samples": 10000,
+    "sizeBytes": 14541032,
+    "split": {
+      "test": 0,
+      "train": 9000,
+      "validation": 1000
+    },
+    "verified": true
+  },
+  "decision": {
+    "decidedAt": "2026-10-11T17:39:17.422Z",
+    "decidedBy": "martial wato",
+    "document": "decision.pdf",
+    "outcome": "approved",
+    "preparedFor": null,
+    "proposal": "p-7c0cebc6e85e2125",
+    "reason": "go",
+    "recordId": "1791740357422"
+  },
+  "files": {
+    "decision": "decision.pdf",
+    "harness": "train.py",
+    "model": "model.py",
+    "request": "request.json",
+    "weights": "export/"
+  },
+  "format": "neurax-run-manifest",
+  "model": {
+    "family": "transformer",
+    "input": "273 features",
+    "name": "Untitled design",
+    "parameters": 43393,
+    "task": "regression"
+  },
+  "neurax": {
+    "version": "0.25.0"
+  },
+  "run": {
+    "createdAt": "2026-10-11T17:39:28.568648746+00:00",
+    "directory": "/home/fossouomartial/NEURAX/Untitled design/runs/2026-10-11-untitled-design-sample-10k-rows-csv-c56b8",
+    "id": "2026-10-11-untitled-design-sample-10k-rows-csv-c56b8",
+    "totalSteps": 5640
+  },
+  "training": {
+    "batchSize": 32,
+    "checkpointEverySteps": 564,
+    "devices": 1,
+    "earlyStoppingPatience": 0,
+    "epochs": 20,
+    "gradAccumSteps": 1,
+    "gradientCheckpointing": false,
+    "learningRate": 0.001,
+    "lrScheduler": "cosine",
+    "maxSteps": 0,
+    "optimizer": "adamw",
+    "precision": "fp32",
+    "seed": 0,
+    "splitFractions": {
+      "test": 0,
+      "train": 0.9,
+      "validation": 0.1
+    },
+    "stepsPerEpoch": 282,
+    "totalSteps": 5640,
+    "warmupSteps": 564,
+    "weightDecay": 0.1
+  },
+  "version": 1,
+  "actual": {
+    "status": "finished",
+    "finishedAt": "2026-10-11T17:43:26.131875+00:00",
+    "steps": 5640,
+    "trainingSeconds": 218.1970625515096,
+    "stepSeconds": 0.010271815719954622,
+    "costUsd": 2.7274632818938693e-05,
+    "overBudget": false
+  }
+}
