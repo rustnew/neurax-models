@@ -1,0 +1,46 @@
+{
+  "name": "Untitled design · sample_10k_rows.csv",
+  "modelCode": "\"\"\"\nUntitled design — written by NEURAX from the design it analysed.\n\nEvery block below is built from the values NEURAX resolved for it, so\nthis model has the 43393 parameters its analysis reports. Regenerate it after any\nchange on the canvas.\n\"\"\"\nimport math\nfrom contextvars import ContextVar\nfrom typing import NamedTuple, Optional\n\nimport torch\nimport torch.nn as nn\nimport torch.nn.functional as F\n\n\nclass Graph(NamedTuple):\n    \"\"\"A batch of graphs: node features, edges as `[2, E]` indices, and the\n    graph each node belongs to.\"\"\"\n\n    x: torch.Tensor\n    edge_index: torch.Tensor\n    batch: torch.Tensor\n    num_graphs: int\n    # Present when the data states them: edge features, edge and node types.\n    edge_attr: Optional[torch.Tensor] = None\n    edge_type: Optional[torch.Tensor] = None\n    node_type: Optional[torch.Tensor] = None\n\n\nACTIVATIONS = {\n    \"relu\": nn.ReLU,\n    \"elu\": nn.ELU,\n    \"softplus\": nn.Softplus,\n    \"gelu\": nn.GELU,\n    \"silu\": nn.SiLU,\n    \"tanh\": nn.Tanh,\n    \"sigmoid\": nn.Sigmoid,\n}\n\n\nclass Sin(nn.Module):\n    def forward(self, x):\n        return torch.sin(x)\n\n\ndef activation(name):\n    \"\"\"The activation a block names; `none` is the identity.\"\"\"\n    if name in (None, \"none\", \"identity\", \"linear\"):\n        return nn.Identity()\n    if name == \"sin\":\n        return Sin()\n    return ACTIVATIONS[name]()\n\n\ndef features(value):\n    \"\"\"The tensor a block computes on: a graph's node features, else itself.\"\"\"\n    return value.x if isinstance(value, Graph) else value\n\n\ndef with_features(value, x):\n    \"\"\"`value` carrying new features: a graph keeps its edges.\"\"\"\n    return value._replace(x=x) if isinstance(value, Graph) else x\n\n\ndef per_position(value, f):\n    \"\"\"`f` applied to each position's vector: over the last axis, or over the\n    channels of each pixel of a feature map — the compiler's reading of a\n    linear map or a norm on an image.\"\"\"\n    x = features(value)\n    if x.dim() == 4:\n        return with_features(value, f(x.permute(0, 2, 3, 1)).permute(0, 3, 1, 2))\n    return with_features(value, f(x))\n\n\nclass Identity(nn.Module):\n    \"\"\"A block that passes what it receives on: the design's input and output,\n    a scheduler, a position scheme applied elsewhere.\"\"\"\n\n    def forward(self, x, *rest):\n        return x\n\n\nclass Dropout(nn.Module):\n    def __init__(self, p):\n        super().__init__()\n        self.drop = nn.Dropout(p)\n\n    def forward(self, x):\n        return with_features(x, self.drop(features(x)))\n\n\nclass Dense(nn.Module):\n    \"\"\"A linear map over the last axis, then its activation.\"\"\"\n\n    def __init__(self, in_features, out_features, bias, function):\n        super().__init__()\n        self.linear = nn.Linear(in_features, out_features, bias=bias)\n        self.function = activation(function)\n\n    def forward(self, x):\n        return per_position(x, lambda h: self.function(self.linear(h)))\n\n\nclass UntitledDesign(nn.Module):\n    def __init__(self):\n        super().__init__()\n        shared = {}\n        self.b_input_1 = Identity()\n        self.b_proj_1 = Dense(in_features=273, out_features=128, bias=True, function=\"relu\")\n        self.b_dropout_1 = Dropout(p=0.1)\n        self.b_proj_2 = Dense(in_features=128, out_features=64, bias=True, function=\"relu\")\n        self.b_dropout_2 = Dropout(p=0.1)\n        self.b_proj_3 = Dense(in_features=64, out_features=1, bias=True, function=None)\n        self.b_output_1 = Identity()\n\n    def forward(self, x):\n        t_input_1 = x\n        t_proj_1 = self.b_proj_1(t_input_1)\n        t_dropout_1 = self.b_dropout_1(t_proj_1)\n        t_proj_2 = self.b_proj_2(t_dropout_1)\n        t_dropout_2 = self.b_dropout_2(t_proj_2)\n        t_proj_3 = self.b_proj_3(t_dropout_2)\n        t_output_1 = self.b_output_1(t_proj_3)\n        return t_output_1\n\n\nif __name__ == \"__main__\":\n    model = UntitledDesign()\n    built = sum(p.numel() for p in model.parameters())\n    print(f\"UntitledDesign: {built:,} parameters\")\n    if built != 43393:\n        print(\"WARNING: NEURAX's analysis counts 43393 parameters for this design\")\n",
+  "modelClass": "UntitledDesign",
+  "datasetPath": "/home/fossouomartial/archive/sample_10k_rows.csv",
+  "inputShape": [
+    273
+  ],
+  "inputShapes": [
+    [
+      273
+    ]
+  ],
+  "inputKind": "features",
+  "vocabSize": null,
+  "numClasses": 1,
+  "target": "wealth_building_index",
+  "task": "regression",
+  "extras": [],
+  "validationFraction": 0.1,
+  "splitFractions": {
+    "test": 0,
+    "train": 0.9,
+    "validation": 0.1
+  },
+  "devices": 1,
+  "epochs": 20,
+  "batchSize": 32,
+  "learningRate": 0.001,
+  "optimizer": "adamw",
+  "weightDecay": 0.1,
+  "warmupSteps": 564,
+  "lrScheduler": "cosine",
+  "precision": "fp32",
+  "stepsPerEpoch": 282,
+  "maxSteps": 0,
+  "checkpointEverySteps": 564,
+  "gradAccumSteps": 1,
+  "gradientCheckpointing": false,
+  "earlyStoppingPatience": 0,
+  "seed": 0,
+  "createProjectDir": true,
+  "predictions": {
+    "parameters": 43393
+  }
+}
