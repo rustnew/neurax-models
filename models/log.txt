@@ -1,0 +1,25 @@
+[neurax] torch 2.14.1+cpu on cpu
+[neurax] training at low priority on 3 CPU threads
+[neurax] 43,393 parameters
+[neurax] 9000 rows (train), 273 features
+[neurax] 1000 rows (validation), 273 features
+[neurax] 1000 rows (validation), 273 features
+[neurax] 1000 rows (validation), 273 features
+[neurax] 1000 rows (validation), 273 features
+[neurax] 1000 rows (validation), 273 features
+[neurax] 1000 rows (validation), 273 features
+[neurax] 1000 rows (validation), 273 features
+[neurax] 1000 rows (validation), 273 features
+[neurax] 1000 rows (validation), 273 features
+[neurax] 1000 rows (validation), 273 features
+[neurax] 1000 rows (validation), 273 features
+[neurax] 1000 rows (validation), 273 features
+[neurax] 1000 rows (validation), 273 features
+[neurax] 1000 rows (validation), 273 features
+[neurax] 1000 rows (validation), 273 features
+[neurax] 1000 rows (validation), 273 features
+[neurax] 1000 rows (validation), 273 features
+[neurax] 1000 rows (validation), 273 features
+[neurax] 1000 rows (validation), 273 features
+[neurax] 1000 rows (validation), 273 features
+[neurax] finished at step 5640
