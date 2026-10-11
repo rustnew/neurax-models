@@ -1,0 +1,15 @@
+{
+  "id": "2026-10-11-untitled-design-sample-10k-rows-csv-c56b8",
+  "name": "Untitled design \u00b7 sample_10k_rows.csv",
+  "status": "finished",
+  "startedAt": "2026-10-11T17:39:28.568648746+00:00",
+  "pid": 2753240,
+  "step": 5640,
+  "totalSteps": 5640,
+  "stepsPerEpoch": 282,
+  "directory": "/home/fossouomartial/NEURAX/Untitled design/runs/2026-10-11-untitled-design-sample-10k-rows-csv-c56b8",
+  "lastHeartbeat": "2026-10-11T17:43:26.131340+00:00",
+  "trainingSeconds": 218.1970625515096,
+  "validationLoss": 0.09709119546413422,
+  "validationAccuracy": null
+}
