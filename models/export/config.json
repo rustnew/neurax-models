@@ -1,0 +1,22 @@
+{
+  "modelClass": "UntitledDesign",
+  "parameters": 43393,
+  "inputShape": [
+    273
+  ],
+  "inputKind": "features",
+  "vocabSize": null,
+  "task": "regression",
+  "numClasses": 1,
+  "bestStep": 2538,
+  "savedAt": "2026-10-11T17:43:26.128937+00:00",
+  "dataset": "/home/fossouomartial/archive/sample_10k_rows.csv",
+  "validationFraction": 0.1,
+  "splitFractions": {
+    "test": 0,
+    "train": 0.9,
+    "validation": 0.1
+  },
+  "validationLoss": 0.09444871646165848,
+  "lastStep": 5640
+}
