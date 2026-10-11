@@ -1,0 +1,10 @@
+{
+  "parameters": 43393,
+  "trainableParameters": 43393,
+  "device": "cpu",
+  "devices": 1,
+  "torchVersion": "2.14.1+cpu",
+  "dtype": "float32",
+  "trainingPrecision": "fp32",
+  "task": "regression"
+}
